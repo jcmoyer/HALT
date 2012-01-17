@@ -1,4 +1,4 @@
-# Halt2
+# HALT
 
 Hardware accelerated terminal implementation written in C++ and OpenGL.
 
