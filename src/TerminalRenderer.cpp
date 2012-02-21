@@ -4,6 +4,9 @@
 #include <glew/glew.h>
 
 namespace halt {
+	const int VERTICES_PER_CELL = 4;
+	const int INDICES_PER_CELL = 6;
+
 	TerminalRenderer::TerminalRenderer(int cellsw, int cellsh, int cellsd, const CharacterSize& cdim)
 		: width(cellsw), height(cellsh), depth(cellsd), ch_size(cdim) {
 		glGenBuffers(1, &vb_handle);
@@ -11,7 +14,7 @@ namespace halt {
 
 		// Allocate enough vertices to hold all of the cells in the terminal on all layers.
 		cells = width * height * depth;
-		vertices = new TerminalVertex[cells * sizeof(TerminalVertex) * 4];
+		vertices = new TerminalVertex[cells * sizeof(TerminalVertex) * VERTICES_PER_CELL];
 
 		this->BuildVertices(cdim);
 		this->BuildIndices();
@@ -37,14 +40,14 @@ namespace halt {
 		program->Enable(true);
 
 		for (int z = 0; z < depth; z++) {
-			glBufferDataARB(GL_ARRAY_BUFFER_ARB, 4 * width * height * sizeof(TerminalVertex),
-				(vertices + width * height * 4 * z), GL_STREAM_DRAW_ARB);
+			glBufferDataARB(GL_ARRAY_BUFFER_ARB, VERTICES_PER_CELL * width * height * sizeof(TerminalVertex),
+				(vertices + width * height * VERTICES_PER_CELL * z), GL_STREAM_DRAW_ARB);
 
 			glDrawRangeElements(
 				GL_TRIANGLES,
-				6 * width * height * z,
-				6 * width * height * z + 6 * width * height,
-				6 * width * height,
+				INDICES_PER_CELL * width * height * z,
+				INDICES_PER_CELL * width * height * z + INDICES_PER_CELL * width * height,
+				INDICES_PER_CELL * width * height,
 				GL_UNSIGNED_SHORT,
 				0);
 
@@ -79,14 +82,14 @@ namespace halt {
 		for (int z = 0; z < depth; z++) {
 			int page_offset = z * width * height;
 			for (int i = 0; i < width * height; i++) {
-				vertices[(page_offset + i) * 4 + 0].x = cdim.width  * (i % width);
-				vertices[(page_offset + i) * 4 + 0].y = cdim.height * (i / width);
-				vertices[(page_offset + i) * 4 + 1].x = cdim.width  * (i % width) + cdim.width;
-				vertices[(page_offset + i) * 4 + 1].y = cdim.height * (i / width);
-				vertices[(page_offset + i) * 4 + 2].x = cdim.width  * (i % width);
-				vertices[(page_offset + i) * 4 + 2].y = cdim.height * (i / width) + cdim.height;
-				vertices[(page_offset + i) * 4 + 3].x = cdim.width  * (i % width) + cdim.width;
-				vertices[(page_offset + i) * 4 + 3].y = cdim.height * (i / width) + cdim.height;
+				vertices[(page_offset + i) * VERTICES_PER_CELL + 0].x = cdim.width  * (i % width);
+				vertices[(page_offset + i) * VERTICES_PER_CELL + 0].y = cdim.height * (i / width);
+				vertices[(page_offset + i) * VERTICES_PER_CELL + 1].x = cdim.width  * (i % width) + cdim.width;
+				vertices[(page_offset + i) * VERTICES_PER_CELL + 1].y = cdim.height * (i / width);
+				vertices[(page_offset + i) * VERTICES_PER_CELL + 2].x = cdim.width  * (i % width);
+				vertices[(page_offset + i) * VERTICES_PER_CELL + 2].y = cdim.height * (i / width) + cdim.height;
+				vertices[(page_offset + i) * VERTICES_PER_CELL + 3].x = cdim.width  * (i % width) + cdim.width;
+				vertices[(page_offset + i) * VERTICES_PER_CELL + 3].y = cdim.height * (i / width) + cdim.height;
 			}
 		}
 	}
@@ -94,19 +97,19 @@ namespace halt {
 	void TerminalRenderer::BuildIndices() {
 		// Build the index buffer. This will never change. Note that this DOES send
 		// the indices to the GPU.
-		unsigned short* buffer = new unsigned short[cells * 6];
+		unsigned short* buffer = new unsigned short[cells * INDICES_PER_CELL];
 		for (int i = 0; i < cells; i++) {
-			buffer[i * 6 + 0] = i * 4 + 0;
-			buffer[i * 6 + 1] = i * 4 + 1;
-			buffer[i * 6 + 2] = i * 4 + 2;
-			buffer[i * 6 + 3] = i * 4 + 2;
-			buffer[i * 6 + 4] = i * 4 + 3;
-			buffer[i * 6 + 5] = i * 4 + 1;
+			buffer[i * INDICES_PER_CELL + 0] = i * VERTICES_PER_CELL + 0;
+			buffer[i * INDICES_PER_CELL + 1] = i * VERTICES_PER_CELL + 1;
+			buffer[i * INDICES_PER_CELL + 2] = i * VERTICES_PER_CELL + 2;
+			buffer[i * INDICES_PER_CELL + 3] = i * VERTICES_PER_CELL + 2;
+			buffer[i * INDICES_PER_CELL + 4] = i * VERTICES_PER_CELL + 3;
+			buffer[i * INDICES_PER_CELL + 5] = i * VERTICES_PER_CELL + 1;
 		}
 
 		// Write indices to GPU.
 		this->BindIBO(true);
-		glBufferDataARB(GL_ELEMENT_ARRAY_BUFFER_ARB, cells * 6 * sizeof(unsigned short),
+		glBufferDataARB(GL_ELEMENT_ARRAY_BUFFER_ARB, cells * INDICES_PER_CELL * sizeof(unsigned short),
 			buffer, GL_STATIC_DRAW_ARB);
 		this->BindIBO(false);
 
@@ -116,7 +119,7 @@ namespace halt {
 	TerminalVertex* TerminalRenderer::GetBaseVertex(int x, int y, int z) {
 		if (x >= 0 && x < width && y >= 0 && y < height && z >= 0 && z < depth) {
 			int page_offset = z * width * height;
-			return &vertices[(page_offset + y * width + x) * 4];
+			return &vertices[(page_offset + y * width + x) * VERTICES_PER_CELL];
 		} else {
 			return 0;
 		}
