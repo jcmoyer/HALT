@@ -9,7 +9,7 @@ namespace halt {
 		vs = new TVShader();
 		fs = new TFShader();
 
-		handle = glCreateProgramObjectARB();
+		handle = glCreateProgram();
 		glAttachShader(handle, vs->GetHandle());
 		glAttachShader(handle, fs->GetHandle());
 

@@ -20,9 +20,9 @@ namespace halt {
 	const char* TFS_COLOR    = "tfs_Color";
 
 	TFShader::TFShader() {
-		handle = glCreateShaderObjectARB(GL_FRAGMENT_SHADER_ARB);
-		glShaderSourceARB(handle, 1, &TFGLSLShaderSource, 0);
-		glCompileShaderARB(handle);
+		handle = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(handle, 1, &TFGLSLShaderSource, 0);
+		glCompileShader(handle);
 	}
 
 	TFShader::~TFShader() {

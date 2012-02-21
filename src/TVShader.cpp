@@ -34,9 +34,9 @@ namespace halt {
 	const char* COLOR_ATTRIBUTE_NAME = "tvs_Color";
 
 	TVShader::TVShader() {
-		handle = glCreateShaderObjectARB(GL_VERTEX_SHADER_ARB);
-		glShaderSourceARB(handle, 1, &TVGLSLShaderSource, 0);
-		glCompileShaderARB(handle);
+		handle = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(handle, 1, &TVGLSLShaderSource, 0);
+		glCompileShader(handle);
 	}
 
 	TVShader::~TVShader() {

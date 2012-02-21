@@ -40,8 +40,8 @@ namespace halt {
 		program->Enable(true);
 
 		for (int z = 0; z < depth; z++) {
-			glBufferDataARB(GL_ARRAY_BUFFER_ARB, VERTICES_PER_CELL * width * height * sizeof(TerminalVertex),
-				(vertices + width * height * VERTICES_PER_CELL * z), GL_STREAM_DRAW_ARB);
+			glBufferData(GL_ARRAY_BUFFER, VERTICES_PER_CELL * width * height * sizeof(TerminalVertex),
+				(vertices + width * height * VERTICES_PER_CELL * z), GL_STREAM_DRAW);
 
 			glDrawRangeElements(
 				GL_TRIANGLES,
@@ -52,7 +52,7 @@ namespace halt {
 				0);
 
 			// Request a new block of memory so we don't block while waiting to draw.
-			glBufferDataARB(GL_ARRAY_BUFFER_ARB, 0, 0, GL_STREAM_DRAW_ARB);
+			glBufferData(GL_ARRAY_BUFFER, 0, 0, GL_STREAM_DRAW);
 		}
 		
 		this->BindVBO(false);
@@ -62,17 +62,17 @@ namespace halt {
 
 	void TerminalRenderer::BindVBO(bool state) {
 		if (state) {
-			glBindBufferARB(GL_ARRAY_BUFFER_ARB, vb_handle);
+			glBindBuffer(GL_ARRAY_BUFFER, vb_handle);
 		} else {
-			glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
 	}
 
 	void TerminalRenderer::BindIBO(bool state) {
 		if (state) {
-			glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, ib_handle);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib_handle);
 		} else {
-			glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, 0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		}
 	}
 
@@ -109,8 +109,8 @@ namespace halt {
 
 		// Write indices to GPU.
 		this->BindIBO(true);
-		glBufferDataARB(GL_ELEMENT_ARRAY_BUFFER_ARB, cells * INDICES_PER_CELL * sizeof(unsigned short),
-			buffer, GL_STATIC_DRAW_ARB);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, cells * INDICES_PER_CELL * sizeof(unsigned short),
+			buffer, GL_STATIC_DRAW);
 		this->BindIBO(false);
 
 		delete[] buffer;
