@@ -5,12 +5,13 @@
 #include "TerminalShader.h"
 #include "CharacterMap.h"
 #include <cstring>
+#include <glew/glew.h>
 
 namespace halt {
 	Terminal::Terminal(int width, int height, int depth, const CharacterSize& cdim)
 		: width(width), height(height), depth(depth), size(cdim), shader(0) {
 		renderer   = new TerminalRenderer(width, height, depth, cdim);
-		default_cm = new DefaultCharacterMap(1.0f, 1.0f, cdim);
+		default_cm = new DefaultCharacterMap(1, 1, cdim);
 		translator = new D2VTranslator(*renderer, *default_cm);
 	}
 
@@ -96,10 +97,13 @@ namespace halt {
 
 	void Terminal::SetTexture(unsigned int handle) {
 		this->renderer->SetTexture(handle);
-	}
 
-	void Terminal::SetTextureSize(int width, int height) {
-		this->translator->SetTextureSize(width, height);
+		// Figure out the size of the texture and pass it on to
+		// components that need it.
+		int width, height;
+		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH,  &width);
+		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
+		this->SetTextureSize(width, height);
 	}
 
 	void Terminal::SetShader(TerminalShader* shader) {
@@ -114,5 +118,9 @@ namespace halt {
 		} else {
 			this->translator->SetCharacterMap(*default_cm);
 		}
+	}
+
+	void Terminal::SetTextureSize(int width, int height) {
+		this->translator->SetTextureSize(width, height);
 	}
 }

@@ -31,9 +31,11 @@ namespace halt {
 		HALT_API void PutString(const char* value, int color, int x, int y, int z);
 		HALT_API void Draw();
 		HALT_API void SetTexture(unsigned int handle);
-		HALT_API void SetTextureSize(int width, int height);
 		HALT_API void SetShader(TerminalShader* shader);
 		HALT_API void SetCharacterMap(CharacterMap* map);
+	private:
+		// Internal use only.
+		void SetTextureSize(int width, int height);
 	};
 }
 
