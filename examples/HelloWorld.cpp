@@ -138,10 +138,6 @@ int main(int argc, char** argv) {
 	// Tell HALT to use the loaded texture.
 	term->SetTexture(texture);
 
-	// Write some text to the terminal. Writes are buffered, so changes won't
-	// appear until halt::Terminal::Draw is called.
-	term->PutString("Hello World!", RGBA32(0, 255, 0, 255), 0, 0, 0);
-
 	// Terminal shader used for the background effect.
 	BGShader bg_shader;
 
@@ -161,7 +157,7 @@ int main(int argc, char** argv) {
 
 		// Clear the FPS string stream and write the current FPS to it.
 		fps_stream.str(std::string());
-		fps_stream<<"FPS: "<<GetFPS();
+		fps_stream<<"Hello World! -- FPS: "<<GetFPS();
 
 		// Activate the background shader.
 		term->SetShader(&bg_shader);
@@ -174,8 +170,14 @@ int main(int argc, char** argv) {
 		// Clear the top-most page of the terminal.
 		term->Clear(1);
 		// Write the FPS string to the middle of the screen, on the top-most
-		// page.
-		term->PutString(fps_stream.str().c_str(), 0xFFFFFFFF, 36, 12, 1);
+		// page. Writes are buffered, so changes won't appear until
+		// halt::Terminal::Draw is called.
+		term->PutString(
+			fps_stream.str().c_str(),
+			0xFFFFFFFF,
+			40 - fps_stream.str().size() / 2,
+			12,
+			1);
 
 		// Actually render the terminal.
 		term->Draw();
