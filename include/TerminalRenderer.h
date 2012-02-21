@@ -6,8 +6,8 @@
 
 // Forward declarations
 namespace halt {
-	class  CharacterBuffer;
-	class  TProgram;
+	class CharacterBuffer;
+	class TProgram;
 }
 
 namespace halt {

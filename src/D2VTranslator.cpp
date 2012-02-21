@@ -1,9 +1,11 @@
 #include "D2VTranslator.h"
 #include "TerminalRenderer.h"
+#include "CharacterMap.h"
 #include <memory>
 
 namespace halt {
-	D2VTranslator::D2VTranslator(TerminalRenderer& renderer) : renderer(renderer), tx_width(1.0f), tx_height(1.0f) {
+	D2VTranslator::D2VTranslator(TerminalRenderer& renderer, CharacterMap& cmap) : renderer(renderer), cmap(cmap) {
+
 	}
 
 	void D2VTranslator::QFill(int z) {
@@ -28,43 +30,25 @@ namespace halt {
 	}
 
 	void D2VTranslator::SetTextureSize(int width, int height) {
-		tx_width  = static_cast<float>(width);
-		tx_height = static_cast<float>(height);
+		this->cmap.tx_width  = width;
+		this->cmap.tx_height = height;
+	}
+
+	void D2VTranslator::SetCharacterMap(CharacterMap& cmap) {
+		this->cmap = cmap;
 	}
 
 	void D2VTranslator::MapVertex(TerminalVertex* base, int value) {
-		if (base == 0) return;
-		float scale_x = renderer.ch_size.width  / tx_width;
-		float scale_y = renderer.ch_size.height / tx_height;
-		float src_x   = (value & 0x0F)        * scale_x;
-		float src_y   = ((value >> 4) & 0x0F) * scale_y;
-		base[0].u = src_x;
-		base[0].v = src_y;
-		base[1].u = src_x + scale_x;
-		base[1].v = src_y;
-		base[2].u = src_x;
-		base[2].v = src_y + scale_y;
-		base[3].u = src_x + scale_x;
-		base[3].v = src_y + scale_y;
+		if (!base) return;
+		cmap.Map(value, base);
 	}
 
 	void D2VTranslator::MapVertex(TerminalVertex* base, int value, int color) {
-		if (base == 0) return;
-		float scale_x = renderer.ch_size.width  / tx_width;
-		float scale_y = renderer.ch_size.height / tx_height;
-		float src_x   = (value & 0x0F)        * scale_x;
-		float src_y   = ((value >> 4) & 0x0F) * scale_y;
-		base[0].u = src_x;
-		base[0].v = src_y;
+		if (!base) return;
+		cmap.Map(value, base);
 		base[0].color = color;
-		base[1].u = src_x + scale_x;
-		base[1].v = src_y;
 		base[1].color = color;
-		base[2].u = src_x;
-		base[2].v = src_y + scale_y;
 		base[2].color = color;
-		base[3].u = src_x + scale_x;
-		base[3].v = src_y + scale_y;
 		base[3].color = color;
 	}
 }

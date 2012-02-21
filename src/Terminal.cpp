@@ -3,17 +3,20 @@
 #include "TerminalRenderer.h"
 #include "D2VTranslator.h"
 #include "TerminalShader.h"
+#include "CharacterMap.h"
 #include <cstring>
 
 namespace halt {
 	Terminal::Terminal(int width, int height, int depth, const CharacterSize& cdim)
 		: width(width), height(height), depth(depth), size(cdim), shader(0) {
 		renderer   = new TerminalRenderer(width, height, depth, cdim);
-		translator = new D2VTranslator(*renderer);
+		default_cm = new DefaultCharacterMap(1.0f, 1.0f, cdim);
+		translator = new D2VTranslator(*renderer, *default_cm);
 	}
 
 	Terminal::~Terminal() {
 		if (renderer) delete renderer;
+		if (default_cm) delete default_cm;
 		if (translator) delete translator;
 	}
 
@@ -96,10 +99,20 @@ namespace halt {
 	}
 
 	void Terminal::SetTextureSize(int width, int height) {
-		translator->SetTextureSize(width, height);
+		this->translator->SetTextureSize(width, height);
 	}
 
 	void Terminal::SetShader(TerminalShader* shader) {
 		this->shader = shader;
+	}
+
+	void Terminal::SetCharacterMap(CharacterMap* map) {
+		// If a map is provided, use that. Otherwise, revert to the
+		// default map.
+		if (map) {
+			this->translator->SetCharacterMap(*map);
+		} else {
+			this->translator->SetCharacterMap(*default_cm);
+		}
 	}
 }

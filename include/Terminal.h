@@ -7,18 +7,21 @@
 
 // Forward declarations
 namespace halt {
-	class  TerminalRenderer;
-	class  D2VTranslator;
-	class  TerminalShader;
+	class TerminalRenderer;
+	class D2VTranslator;
+	class TerminalShader;
+	class CharacterMap;
+	class DefaultCharacterMap;
 }
 
 namespace halt {
 	class Terminal {
 		const int width, height, depth;
-		CharacterSize     size;
-		TerminalRenderer* renderer;
-		D2VTranslator*    translator;
-		TerminalShader*   shader;
+		CharacterSize        size;
+		TerminalRenderer*    renderer;
+		D2VTranslator*       translator;
+		TerminalShader*      shader;
+		DefaultCharacterMap* default_cm;
 	public:
 		HALT_API Terminal(int width, int height, int depth, const CharacterSize& cdim);
 		HALT_API ~Terminal();
@@ -30,6 +33,7 @@ namespace halt {
 		HALT_API void SetTexture(unsigned int handle);
 		HALT_API void SetTextureSize(int width, int height);
 		HALT_API void SetShader(TerminalShader* shader);
+		HALT_API void SetCharacterMap(CharacterMap* map);
 	};
 }
 
