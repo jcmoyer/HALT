@@ -33,9 +33,19 @@ namespace halt {
 }
 
 namespace halt {
+	/// Represents a vertex used to render the terminal.
 	struct TerminalVertex {
-		short x, y;
-		float u, v;
+		/// X coordinate of the vertex, in pixels.
+		short x;
+		/// Y coordinate of the vertex, in pixels.
+		short y;
+		/// U value of the texture coordinate. 0.0f is the left side of the
+		/// texture, and 1.0f is the right side of the texture.
+		float u;
+		/// V value of the texture coordinate. 0.0f is the top side of the
+		/// texture, and 1.0f is the bottom side of the texture.
+		float v;
+		/// Color of the vertex.
 		int color;
 	};
 

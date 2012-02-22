@@ -31,45 +31,41 @@ namespace halt {
 }
 
 namespace halt {
-	// Abstract class for mapping character values to UV coordinates.
+	/// Abstract class for mapping character values to UV coordinates.
 	class CharacterMap {
 	public:
-		int tx_width, tx_height;
+		/// Width of the texture used to render the terminal.
+		int tx_width;
+		/// Height of the texture used to render the terminal.
+		int tx_height;
+		/// Creates a CharacterMap given a texture's width and height.
+		/// @param texw Texture width.
+		/// @param texh Texture height.
 		CharacterMap(int texw, int texh);
+
+		/// Maps a cell value to UV coordinates.
+		/// @param value Cell value to map.
+		/// @param base Pointer to the vertices that need to be modified. It
+		///        is safe to modify four vertices starting from this pointer.
+		/// @see TerminalVertex
 		virtual void Map(int value, TerminalVertex* base) const = 0;
 	};
 
-	// Default character map. With this map, the number of characters is limited
-	// to 256. The significant parts of a character value consists of the least
-	// significant byte. Given this byte, the most significant four bits represent
-	// the Y value of the character given a texture. The least significant four
-	// bits represent the X value of the character. This allows for a character
-	// texture consisting of of 16x16 (256) characters arranged in a grid. For
-	// example, the value 0x48 would take the 8th character from the left and
-	// 4th character from the top, selecting the 72nd character in the texture.
-	// These positions are zero-based. Here is a visual representation, where X
-	// is the character that will be selected:
-	//  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|X|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	// |_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
-	//
+	/// Default character map. Only supports up to 256 characters (values are
+	/// limited to the range of a single byte). Cell values are translated to
+	/// UV coordinates based on their upper and lower 4 bits. The least
+	/// significant four bits represent the number of cells into the texture
+	/// from the left side that UV coordinates will be used from. Likewise,
+	/// the most significant four bits represent the number of cells into
+	/// the texture from the top side.
 	class DefaultCharacterMap : public CharacterMap {
 		CharacterSize ch_size;
 	public:
+		/// Creates a DefaultCharacterMap given a texture's width, height,
+		/// and the size of cells in the terminal.
+		/// @param texw Texture width.
+		/// @param texh Texture height.
+		/// @param charsize Cell size.
 		DefaultCharacterMap(int texw, int texh, CharacterSize charsize);
 		void Map(int value, TerminalVertex* base) const;
 	};

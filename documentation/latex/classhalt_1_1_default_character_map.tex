@@ -1,0 +1,88 @@
+\hypertarget{classhalt_1_1_default_character_map}{\section{halt\-:\-:\-Default\-Character\-Map \-Class \-Reference}
+\label{classhalt_1_1_default_character_map}\index{halt\-::\-Default\-Character\-Map@{halt\-::\-Default\-Character\-Map}}
+}
+
+
+\-Default character map. \-Only supports up to 256 characters (values are limited to the range of a single byte). \-Cell values are translated to \-U\-V coordinates based on their upper and lower 4 bits. \-The least significant four bits represent the number of cells into the texture from the left side that \-U\-V coordinates will be used from. \-Likewise, the most significant four bits represent the number of cells into the texture from the top side.  
+
+
+
+
+{\ttfamily \#include $<$\-Character\-Map.\-h$>$}
+
+\-Inheritance diagram for halt\-:\-:\-Default\-Character\-Map\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhalt_1_1_default_character_map}
+\end{center}
+\end{figure}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classhalt_1_1_default_character_map_a0d5b0a5026652d4d9d8b0cbe03f2e82b}{\-Default\-Character\-Map} (int texw, int texh, \-Character\-Size charsize)
+\begin{DoxyCompactList}\small\item\em \-Creates a \hyperlink{classhalt_1_1_default_character_map}{\-Default\-Character\-Map} given a texture's width, height, and the size of cells in the terminal. \end{DoxyCompactList}\item 
+void \hyperlink{classhalt_1_1_default_character_map_a7012d845e8940d35151f181f3e41e7ec}{\-Map} (int value, \hyperlink{structhalt_1_1_terminal_vertex}{\-Terminal\-Vertex} $\ast$base) const 
+\begin{DoxyCompactList}\small\item\em \-Maps a cell value to \-U\-V coordinates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Default character map. \-Only supports up to 256 characters (values are limited to the range of a single byte). \-Cell values are translated to \-U\-V coordinates based on their upper and lower 4 bits. \-The least significant four bits represent the number of cells into the texture from the left side that \-U\-V coordinates will be used from. \-Likewise, the most significant four bits represent the number of cells into the texture from the top side. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classhalt_1_1_default_character_map_a0d5b0a5026652d4d9d8b0cbe03f2e82b}{\index{halt\-::\-Default\-Character\-Map@{halt\-::\-Default\-Character\-Map}!\-Default\-Character\-Map@{\-Default\-Character\-Map}}
+\index{\-Default\-Character\-Map@{\-Default\-Character\-Map}!halt::DefaultCharacterMap@{halt\-::\-Default\-Character\-Map}}
+\subsubsection[{\-Default\-Character\-Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf halt\-::\-Default\-Character\-Map\-::\-Default\-Character\-Map} (
+\begin{DoxyParamCaption}
+\item[{int}]{texw, }
+\item[{int}]{texh, }
+\item[{\-Character\-Size}]{charsize}
+\end{DoxyParamCaption}
+)}}\label{classhalt_1_1_default_character_map_a0d5b0a5026652d4d9d8b0cbe03f2e82b}
+
+
+\-Creates a \hyperlink{classhalt_1_1_default_character_map}{\-Default\-Character\-Map} given a texture's width, height, and the size of cells in the terminal. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em texw} & \-Texture width. \\
+\hline
+{\em texh} & \-Texture height. \\
+\hline
+{\em charsize} & \-Cell size. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classhalt_1_1_default_character_map_a7012d845e8940d35151f181f3e41e7ec}{\index{halt\-::\-Default\-Character\-Map@{halt\-::\-Default\-Character\-Map}!\-Map@{\-Map}}
+\index{\-Map@{\-Map}!halt::DefaultCharacterMap@{halt\-::\-Default\-Character\-Map}}
+\subsubsection[{\-Map}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf halt\-::\-Default\-Character\-Map\-::\-Map} (
+\begin{DoxyParamCaption}
+\item[{int}]{value, }
+\item[{{\bf \-Terminal\-Vertex} $\ast$}]{base}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classhalt_1_1_default_character_map_a7012d845e8940d35151f181f3e41e7ec}
+
+
+\-Maps a cell value to \-U\-V coordinates. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em value} & \-Cell value to map. \\
+\hline
+{\em base} & \-Pointer to the vertices that need to be modified. \-It is safe to modify four vertices starting from this pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{\-See also}
+\hyperlink{structhalt_1_1_terminal_vertex}{\-Terminal\-Vertex} 
+\end{DoxySeeAlso}
+
+
+\-Implements \hyperlink{classhalt_1_1_character_map_a54526db15aa6210cca956de86636f26b}{halt\-::\-Character\-Map}.
+
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\-Halt2/include/\-Character\-Map.\-h\item 
+\-Halt2/src/\-Character\-Map.\-cpp\end{DoxyCompactItemize}

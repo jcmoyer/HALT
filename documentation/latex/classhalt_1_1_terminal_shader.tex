@@ -1,0 +1,52 @@
+\hypertarget{classhalt_1_1_terminal_shader}{\section{halt\-:\-:\-Terminal\-Shader \-Class \-Reference}
+\label{classhalt_1_1_terminal_shader}\index{halt\-::\-Terminal\-Shader@{halt\-::\-Terminal\-Shader}}
+}
+
+
+\hyperlink{classhalt_1_1_terminal}{\-Terminal} shader object. \hyperlink{classhalt_1_1_terminal}{\-Terminal} shaders are responsible for transforming an input value to an output value. \-They are used to intercept cells as they are being written to the terminal buffer. \-Because of this, they are able to inject special effects like waves and colors.  
+
+
+
+
+{\ttfamily \#include $<$\-Terminal\-Shader.\-h$>$}
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classhalt_1_1_terminal_shader_a5f76d919e392b505be7dd7c8c153e463}{\-Transform} (const \hyperlink{structhalt_1_1_terminal_shader_input}{\-Terminal\-Shader\-Input} \&input, \hyperlink{structhalt_1_1_terminal_shader_output}{\-Terminal\-Shader\-Output} \&output)=0
+\begin{DoxyCompactList}\small\item\em \-Transforms an input value into an output value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\hyperlink{classhalt_1_1_terminal}{\-Terminal} shader object. \hyperlink{classhalt_1_1_terminal}{\-Terminal} shaders are responsible for transforming an input value to an output value. \-They are used to intercept cells as they are being written to the terminal buffer. \-Because of this, they are able to inject special effects like waves and colors. 
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classhalt_1_1_terminal_shader_a5f76d919e392b505be7dd7c8c153e463}{\index{halt\-::\-Terminal\-Shader@{halt\-::\-Terminal\-Shader}!\-Transform@{\-Transform}}
+\index{\-Transform@{\-Transform}!halt::TerminalShader@{halt\-::\-Terminal\-Shader}}
+\subsubsection[{\-Transform}]{\setlength{\rightskip}{0pt plus 5cm}virtual void {\bf halt\-::\-Terminal\-Shader\-::\-Transform} (
+\begin{DoxyParamCaption}
+\item[{const {\bf \-Terminal\-Shader\-Input} \&}]{input, }
+\item[{{\bf \-Terminal\-Shader\-Output} \&}]{output}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classhalt_1_1_terminal_shader_a5f76d919e392b505be7dd7c8c153e463}
+
+
+\-Transforms an input value into an output value. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em input} & \-Cell that is currently being written to the terminal buffer. \\
+\hline
+{\em output} & \-The modified cell to write to the terminal buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{\-See also}
+\hyperlink{structhalt_1_1_terminal_shader_input}{\-Terminal\-Shader\-Input} 
+
+\hyperlink{structhalt_1_1_terminal_shader_output}{\-Terminal\-Shader\-Output} 
+\end{DoxySeeAlso}
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\-Halt2/include/\-Terminal\-Shader.\-h\end{DoxyCompactItemize}

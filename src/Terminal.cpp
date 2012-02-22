@@ -143,6 +143,6 @@ namespace halt {
 	}
 
 	void Terminal::SetTextureSize(int width, int height) {
-		this->translator->SetTextureSize(width, height);
+		this->translator->SetTextureSize(width, height); 
 	}
 }

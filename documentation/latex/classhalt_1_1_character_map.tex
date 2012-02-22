@@ -1,0 +1,94 @@
+\hypertarget{classhalt_1_1_character_map}{\section{halt\-:\-:\-Character\-Map \-Class \-Reference}
+\label{classhalt_1_1_character_map}\index{halt\-::\-Character\-Map@{halt\-::\-Character\-Map}}
+}
+
+
+\-Abstract class for mapping character values to \-U\-V coordinates.  
+
+
+
+
+{\ttfamily \#include $<$\-Character\-Map.\-h$>$}
+
+\-Inheritance diagram for halt\-:\-:\-Character\-Map\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhalt_1_1_character_map}
+\end{center}
+\end{figure}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classhalt_1_1_character_map_a7a648f9006981378e8cd4ba1cd4c450c}{\-Character\-Map} (int texw, int texh)
+\begin{DoxyCompactList}\small\item\em \-Creates a \hyperlink{classhalt_1_1_character_map}{\-Character\-Map} given a texture's width and height. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classhalt_1_1_character_map_a54526db15aa6210cca956de86636f26b}{\-Map} (int value, \hyperlink{structhalt_1_1_terminal_vertex}{\-Terminal\-Vertex} $\ast$base) const =0
+\begin{DoxyCompactList}\small\item\em \-Maps a cell value to \-U\-V coordinates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classhalt_1_1_character_map_af9e7d56be60645fb8739a7ca63eb1d09}{int \hyperlink{classhalt_1_1_character_map_af9e7d56be60645fb8739a7ca63eb1d09}{tx\-\_\-width}}\label{classhalt_1_1_character_map_af9e7d56be60645fb8739a7ca63eb1d09}
+
+\begin{DoxyCompactList}\small\item\em \-Width of the texture used to render the terminal. \end{DoxyCompactList}\item 
+\hypertarget{classhalt_1_1_character_map_a3a048cf0ccfe94580cc2e56d60930b68}{int \hyperlink{classhalt_1_1_character_map_a3a048cf0ccfe94580cc2e56d60930b68}{tx\-\_\-height}}\label{classhalt_1_1_character_map_a3a048cf0ccfe94580cc2e56d60930b68}
+
+\begin{DoxyCompactList}\small\item\em \-Height of the texture used to render the terminal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Abstract class for mapping character values to \-U\-V coordinates. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classhalt_1_1_character_map_a7a648f9006981378e8cd4ba1cd4c450c}{\index{halt\-::\-Character\-Map@{halt\-::\-Character\-Map}!\-Character\-Map@{\-Character\-Map}}
+\index{\-Character\-Map@{\-Character\-Map}!halt::CharacterMap@{halt\-::\-Character\-Map}}
+\subsubsection[{\-Character\-Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf halt\-::\-Character\-Map\-::\-Character\-Map} (
+\begin{DoxyParamCaption}
+\item[{int}]{texw, }
+\item[{int}]{texh}
+\end{DoxyParamCaption}
+)}}\label{classhalt_1_1_character_map_a7a648f9006981378e8cd4ba1cd4c450c}
+
+
+\-Creates a \hyperlink{classhalt_1_1_character_map}{\-Character\-Map} given a texture's width and height. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em texw} & \-Texture width. \\
+\hline
+{\em texh} & \-Texture height. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classhalt_1_1_character_map_a54526db15aa6210cca956de86636f26b}{\index{halt\-::\-Character\-Map@{halt\-::\-Character\-Map}!\-Map@{\-Map}}
+\index{\-Map@{\-Map}!halt::CharacterMap@{halt\-::\-Character\-Map}}
+\subsubsection[{\-Map}]{\setlength{\rightskip}{0pt plus 5cm}virtual void {\bf halt\-::\-Character\-Map\-::\-Map} (
+\begin{DoxyParamCaption}
+\item[{int}]{value, }
+\item[{{\bf \-Terminal\-Vertex} $\ast$}]{base}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classhalt_1_1_character_map_a54526db15aa6210cca956de86636f26b}
+
+
+\-Maps a cell value to \-U\-V coordinates. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em value} & \-Cell value to map. \\
+\hline
+{\em base} & \-Pointer to the vertices that need to be modified. \-It is safe to modify four vertices starting from this pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{\-See also}
+\hyperlink{structhalt_1_1_terminal_vertex}{\-Terminal\-Vertex} 
+\end{DoxySeeAlso}
+
+
+\-Implemented in \hyperlink{classhalt_1_1_default_character_map_a7012d845e8940d35151f181f3e41e7ec}{halt\-::\-Default\-Character\-Map}.
+
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\-Halt2/include/\-Character\-Map.\-h\item 
+\-Halt2/src/\-Character\-Map.\-cpp\end{DoxyCompactItemize}
