@@ -21,7 +21,7 @@
 // ============================================================================
 
 #include "TerminalSurface.h"
-#include <glew/glew.h>
+#include <GL/glew.h>
 
 namespace halt {
 	TerminalSurface::TerminalSurface(int width, int height) {

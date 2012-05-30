@@ -21,7 +21,7 @@
 // ============================================================================
 
 #include "TFShader.h"
-#include <glew/glew.h>
+#include <GL/glew.h>
 
 namespace halt {
 	const char* TFGLSLShaderSource =

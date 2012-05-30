@@ -24,7 +24,7 @@
 #include "TVShader.h"
 #include "TFShader.h"
 #include "Matrix.h"
-#include <glew/glew.h>
+#include <GL/glew.h>
 
 namespace halt {
 	TProgram::TProgram() {

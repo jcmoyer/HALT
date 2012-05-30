@@ -24,11 +24,11 @@
 #include <windows.h>
 #endif
 
-#include <sdl/sdl.h>
-#include <sdl/SDL_opengl.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_opengl.h>
 #include <cmath>
-#include <Halt.h>
-#include <TerminalShader.h>
+#include <HALT/Halt.h>
+#include <HALT/TerminalShader.h>
 #include <ctime>
 #include <vector>
 #include <string>

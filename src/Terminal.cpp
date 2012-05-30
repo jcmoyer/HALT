@@ -27,7 +27,7 @@
 #include "TerminalShader.h"
 #include "CharacterMap.h"
 #include <cstring>
-#include <glew/glew.h>
+#include <GL/glew.h>
 
 namespace halt {
 	Terminal::Terminal(int width, int height, int depth, const CharacterSize& cdim)

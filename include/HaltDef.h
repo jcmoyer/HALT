@@ -26,7 +26,7 @@
 #define HALT_HALTDEF_H
 
 // Figure out whether or not we should use declspec.
-#ifdef LINUX
+#if (defined(LINUX)) || (defined(linux)) || (defined(__linux))
 // TODO: Figure out if this is how you export symbols in gcc.
 #	define HALT_API __attribute__((__visibility__("default")))
 #else

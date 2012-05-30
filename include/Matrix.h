@@ -24,7 +24,7 @@
 #define HALT_MATRIX_H
 
 // Dependencies
-#include <memory>
+#include <cstring>
 
 namespace halt {
 	class Mat4 {

@@ -21,7 +21,7 @@
 // ============================================================================
 
 #include "Halt.h"
-#include <glew/glew.h>
+#include <GL/glew.h>
 
 namespace halt {
 	void Initialize() {

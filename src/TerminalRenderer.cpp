@@ -23,7 +23,10 @@
 #include "TerminalRenderer.h"
 #include "Character.h"
 #include "TProgram.h"
-#include <glew/glew.h>
+#include <GL/glew.h>
+
+#include <cstdio>
+#include <iostream>
 
 namespace halt {
 	const int VERTICES_PER_CELL = 4;
@@ -64,7 +67,7 @@ namespace halt {
 		for (int z = 0; z < depth; z++) {
 			glBufferData(GL_ARRAY_BUFFER, VERTICES_PER_CELL * width * height * sizeof(TerminalVertex),
 				(vertices + width * height * VERTICES_PER_CELL * z), GL_STREAM_DRAW);
-
+			
 			glDrawRangeElements(
 				GL_TRIANGLES,
 				INDICES_PER_CELL * width * height * z,
@@ -72,7 +75,7 @@ namespace halt {
 				INDICES_PER_CELL * width * height,
 				GL_UNSIGNED_SHORT,
 				0);
-
+			
 			// Request a new block of memory so we don't block while waiting to draw.
 			glBufferData(GL_ARRAY_BUFFER, 0, 0, GL_STREAM_DRAW);
 		}

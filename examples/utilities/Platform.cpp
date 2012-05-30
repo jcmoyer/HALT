@@ -21,8 +21,8 @@
 // ============================================================================
 
 #include "Platform.h"
-#include <sdl/SDL.h>
-#include <sdl/SDL_opengl.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_opengl.h>
 
 namespace halt {
 	bool InitSDL() {

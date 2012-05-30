@@ -22,7 +22,7 @@
 
 #include "TVShader.h"
 #include "TerminalRenderer.h"
-#include <glew/glew.h>
+#include <GL/glew.h>
 
 namespace halt {
 	const char* TVGLSLShaderSource =
