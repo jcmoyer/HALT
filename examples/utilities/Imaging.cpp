@@ -35,6 +35,7 @@ namespace halt {
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, ptr);
 		}
+
 		stbi_image_free(ptr);
 		return texture;
 	}

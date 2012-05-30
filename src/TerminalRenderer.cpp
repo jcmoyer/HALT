@@ -41,10 +41,15 @@ namespace halt {
 		cells = width * height * depth;
 		vertices = new TerminalVertex[cells * sizeof(TerminalVertex) * VERTICES_PER_CELL];
 
+	
+
 		this->BuildVertices(cdim);
 		this->BuildIndices();
 
-		program = new TProgram();
+		program = new TProgram();	int err;
+		if ((err = glGetError()) != 0) {
+			fprintf(stderr, "ERROR rend %d (0x%08X)\n", err, err);
+		}
 		program->SetOutputSize(width * ch_size.width, height * ch_size.height);
 	}
 
@@ -63,11 +68,20 @@ namespace halt {
 		this->BindVBO(true);
 		this->BindIBO(true);
 		program->Enable(true);
-
+		
 		for (int z = 0; z < depth; z++) {
 			glBufferData(GL_ARRAY_BUFFER, VERTICES_PER_CELL * width * height * sizeof(TerminalVertex),
 				(vertices + width * height * VERTICES_PER_CELL * z), GL_STREAM_DRAW);
-			
+	
+			glDrawRangeElements(
+				GL_TRIANGLES,
+				0,
+				INDICES_PER_CELL * width * height,
+				INDICES_PER_CELL * width * height,
+				GL_UNSIGNED_SHORT,
+				0);
+
+/*	
 			glDrawRangeElements(
 				GL_TRIANGLES,
 				INDICES_PER_CELL * width * height * z,
@@ -75,6 +89,7 @@ namespace halt {
 				INDICES_PER_CELL * width * height,
 				GL_UNSIGNED_SHORT,
 				0);
+*/
 			
 			// Request a new block of memory so we don't block while waiting to draw.
 			glBufferData(GL_ARRAY_BUFFER, 0, 0, GL_STREAM_DRAW);

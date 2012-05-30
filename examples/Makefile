@@ -21,7 +21,7 @@
 # ============================================================================
 
 CC=g++
-CF=-g -O0 -fno-inline
+CF=-O3
 
 UTILITY_INCLUDE=-I./utilities
 UTILITY_MODULES=Imaging.o Platform.o stb_image.o

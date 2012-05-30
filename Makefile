@@ -29,7 +29,7 @@ LIBS=-lGLEW -lGL
 all: libHALT.so
 
 libHALT.so: $(MODULES)
-	$(CC) $(LIBS) -shared $(MODULES) -o libHALT.so
+	$(CC) -g $(LIBS) -shared $(MODULES) -o libHALT.so
 
 CharacterMap.o:
 	$(CC) $(HI) $(CF) -c src/CharacterMap.cpp

@@ -23,18 +23,20 @@
 #include "TFShader.h"
 #include <GL/glew.h>
 
+#include <stdio.h>
+
 namespace halt {
 	const char* TFGLSLShaderSource =
-		"#version 150                                                           \n"
+		"#version 120                                                           \n"
 		"uniform sampler2D tfs_Sampler0;                                        \n"
 		"                                                                       \n"
-		"in  vec2 tfs_TexCoord;                                                 \n"
-		"in  vec4 tfs_Color;                                                    \n"
+		"varying vec2 tfs_TexCoord;                                                 \n"
+		"varying vec4 tfs_Color;                                                    \n"
 		"                                                                       \n"
-		"out vec4 tfs_Output;                                                   \n"
+		"//varying vec4 tfs_Output;                                                   \n"
 		"                                                                       \n"
 		"void main() {                                                          \n"
-		"    tfs_Output = texture(tfs_Sampler0, tfs_TexCoord) * tfs_Color;      \n"
+		"    gl_FragColor = texture2D(tfs_Sampler0, tfs_TexCoord) * tfs_Color;      \n"
 		"}                                                                      \n";
 
 	const char* SAMPLER_NAME = "tfs_Sampler0";
@@ -45,6 +47,12 @@ namespace halt {
 		handle = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(handle, 1, &TFGLSLShaderSource, 0);
 		glCompileShader(handle);
+
+		char buf[2048];
+		int len;
+		glGetShaderInfoLog(handle, 2047, &len, buf);
+		fprintf(stderr, "PSLOG: %s", buf);
+
 	}
 
 	TFShader::~TFShader() {

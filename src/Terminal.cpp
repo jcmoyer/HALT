@@ -29,10 +29,18 @@
 #include <cstring>
 #include <GL/glew.h>
 
+#include <stdio.h>
+
 namespace halt {
 	Terminal::Terminal(int width, int height, int depth, const CharacterSize& cdim)
 		: width(width), height(height), depth(depth), size(cdim), shader(0) {
 		renderer   = new TerminalRenderer(width, height, depth, cdim);
+
+	int err;
+	if ((err = glGetError()) != 0) {
+		fprintf(stderr, "ERROR term %d (0x%08X)\n", err, err);
+	}
+
 		default_cm = new DefaultCharacterMap(1, 1, cdim);
 		translator = new D2VTranslator(*renderer, *default_cm);
 	}

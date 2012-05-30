@@ -131,9 +131,14 @@ int main(int argc, char** argv) {
 	// Create the actual terminal. It is 80 cells wide, 25 cells
 	// high, and 2 cells deep.
 	halt::Terminal* term = new halt::Terminal(80, 25, 2, size);
-
+	int err;
+	if ((err = glGetError()) != 0) {
+		fprintf(stderr, "ERROR hw %d (0x%08X)", err, err);
+	}
 	// Load the actual terminal character map.
-	GLuint texture = halt::LoadTexture("res/default.png");
+	GLuint texture = halt::LoadTexture("./res/default.png");
+
+
 
 	// Tell HALT to use the loaded texture.
 	term->SetTexture(texture);
