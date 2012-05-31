@@ -45,10 +45,7 @@ namespace halt {
 		this->BuildVertices(cdim);
 		this->BuildIndices();
 
-		program = new TProgram();	int err;
-		if ((err = glGetError()) != 0) {
-			fprintf(stderr, "ERROR rend %d (0x%08X)\n", err, err);
-		}
+		program = new TProgram();
 		program->SetOutputSize(width * ch_size.width, height * ch_size.height);
 	}
 

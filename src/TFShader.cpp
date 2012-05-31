@@ -23,8 +23,6 @@
 #include "TFShader.h"
 #include <GL/glew.h>
 
-#include <stdio.h>
-
 namespace halt {
 	const char* TFGLSLShaderSource =
 		"#version 120                                                           \n"
@@ -47,12 +45,6 @@ namespace halt {
 		handle = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(handle, 1, &TFGLSLShaderSource, 0);
 		glCompileShader(handle);
-
-		char buf[2048];
-		int len;
-		glGetShaderInfoLog(handle, 2047, &len, buf);
-		fprintf(stderr, "PSLOG: %s", buf);
-
 	}
 
 	TFShader::~TFShader() {

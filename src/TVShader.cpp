@@ -24,8 +24,6 @@
 #include "TerminalRenderer.h"
 #include <GL/glew.h>
 
-#include <stdio.h>
-
 namespace halt {
 	const char* TVGLSLShaderSource =
 		"#version 120                                                           \n"
@@ -61,11 +59,6 @@ namespace halt {
 		handle = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(handle, 1, &TVGLSLShaderSource, 0);
 		glCompileShader(handle);
-
-		char buf[2048] = {0};
-		int len;
-		glGetShaderInfoLog(handle, 2047, &len, buf);
-		fprintf(stderr, "VSLOG: %s", buf);
 	}
 
 	TVShader::~TVShader() {

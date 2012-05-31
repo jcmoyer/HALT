@@ -26,8 +26,6 @@
 #include "Matrix.h"
 #include <GL/glew.h>
 
-#include <stdio.h>
-
 namespace halt {
 	TProgram::TProgram() {
 		vs = new TVShader();
@@ -39,20 +37,7 @@ namespace halt {
 		glLinkProgram(handle);
 		this->BindAttributes();
 
-		if (!glIsProgram(handle)) {
-			fprintf(stderr, "not a program!");
-		}
-		char buf[2048] = {0};
-		int len;
-		glGetProgramInfoLog(handle, 2047, &len, buf);
-		fprintf(stderr, "LOG: %s\n", buf);
-
 		this->GetUniformHandles();
-		int err;
-		if ((err = glGetError()) != 0) {
-			fprintf(stderr, "ERRORtp %d (0x%08X)\n", err, err);
-		}
-
 	}
 
 	TProgram::~TProgram() {
@@ -90,12 +75,6 @@ namespace halt {
 	void TProgram::GetUniformHandles() {
 		glUseProgram(handle);
 		shader_mat_proj_handle = glGetUniformLocation(handle, TVS_PROJECTION_MAT);
-
-		int err;
-		if ((err = glGetError()) != 0) {
-			fprintf(stderr, "ERROR guh %d (0x%08X)\n", err, err);
-		}
-
 		shader_tex_handle      = glGetUniformLocation(handle, SAMPLER_NAME);
 		shader_mat_mv_handle   = glGetUniformLocation(handle, TVS_MODEL_VIEW_MAT);
 	}
