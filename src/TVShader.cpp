@@ -40,7 +40,7 @@ namespace halt {
 		"varying vec4 tfs_Color;                                                    \n"
 		"                                                                       \n"
 		"void main() {                                                          \n"
-		"    gl_Position  = tvs_Projection * tvs_ModelView * tvs_Vertex;        \n"
+		"    gl_Position  = tvs_Projection * tvs_ModelView * gl_Vertex;        \n"
 		"    tfs_TexCoord = tvs_TexCoord;                                       \n"
 		"    tfs_Color    = tvs_Color;                                          \n"
 		"}                                                                      \n";

@@ -30,13 +30,13 @@ namespace halt {
 		"#version 120                                                           \n"
 		"uniform sampler2D tfs_Sampler0;                                        \n"
 		"                                                                       \n"
-		"varying vec2 tfs_TexCoord;                                                 \n"
-		"varying vec4 tfs_Color;                                                    \n"
+		"varying vec2 tfs_TexCoord;                                             \n"
+		"varying vec4 tfs_Color;                                                \n"
 		"                                                                       \n"
-		"//varying vec4 tfs_Output;                                                   \n"
+		"                                            \n"
 		"                                                                       \n"
 		"void main() {                                                          \n"
-		"    gl_FragColor = texture2D(tfs_Sampler0, tfs_TexCoord) * tfs_Color;      \n"
+		"    gl_FragColor = texture2D(tfs_Sampler0, tfs_TexCoord) * tfs_Color;  \n"
 		"}                                                                      \n";
 
 	const char* SAMPLER_NAME = "tfs_Sampler0";

@@ -64,6 +64,7 @@ namespace halt {
 	void TProgram::Enable(bool state) {
 		vs->Enable(state);
 		if (state) {
+			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, tex_handle);
 			glUseProgram(handle);
 
@@ -77,11 +78,11 @@ namespace halt {
 			identity.Multiply(proj_matrix, ortho);
 			
 			// The input texture should be on sampler 0.
-			glUniform1i(shader_tex_handle, 0);
+			glUniform1i(shader_tex_handle, GL_TEXTURE0);
 			glUniformMatrix4fv(shader_mat_proj_handle, 1, false, (float*)&proj_matrix);
 			glUniformMatrix4fv(shader_mat_mv_handle, 1, false, (float*)&identity);
 		} else {
-			glBindTexture(GL_TEXTURE_2D, 0);
+			//glBindTexture(GL_TEXTURE_2D, 0);
 			glUseProgram(0);
 		}
 	}

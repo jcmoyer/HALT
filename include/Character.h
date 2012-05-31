@@ -23,6 +23,8 @@
 #ifndef HALT_CHARACTER_H
 #define HALT_CHARACTER_H
 
+#include "HaltDef.h"
+
 namespace halt {
 	struct CharacterSize {
 		int width, height;
