@@ -31,8 +31,6 @@ namespace halt {
 		"varying vec2 tfs_TexCoord;                                             \n"
 		"varying vec4 tfs_Color;                                                \n"
 		"                                                                       \n"
-		"                                            \n"
-		"                                                                       \n"
 		"void main() {                                                          \n"
 		"    gl_FragColor = texture2D(tfs_Sampler0, tfs_TexCoord) * tfs_Color;  \n"
 		"}                                                                      \n";
