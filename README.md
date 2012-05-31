@@ -12,7 +12,7 @@ HALT has a dependency on the OpenGL Extension Wrangler Library. You must downloa
 
 Clone the repository into a folder:
 
-    git clone git://github.com/jcmoyer/HALT.git
+    >git clone git://github.com/jcmoyer/HALT.git
 
 Then, in Visual Studio, create a new project from source. Select the HALT directory. You need to configure your build settings so that Visual Studio builds either a static library or DLL (consult your documentation). Then, link in `OpenGL32.lib` and `glew32.lib`. Build normally.
 
@@ -24,22 +24,21 @@ The examples have an additional dependency on SDL 1.2. They can be built by link
 
 First, download the required dependencies. These are required to build HALT in one way or another:
 
-    sudo apt-get install build-essential libglew-dev libgl1-mesa-dev git
+    $ sudo apt-get install build-essential libglew-dev libgl1-mesa-dev git
 
 Then, clone the repository:
 
-    git clone git://github.com/jcmoyer/HALT.git
+    $ git clone git://github.com/jcmoyer/HALT.git
 
 You can now build HALT.
 
-    cd HALT/
-    git checkout experimental
-    make && sudo make install
+    $ cd HALT/
+    $ make && sudo make install
 
 To build the examples (optional):
 
-    sudo apt-get install libsdl-dev
-    cd examples/ && make
+    $ sudo apt-get install libsdl-dev
+    $ cd examples/ && make
 
 ## Usage
 
