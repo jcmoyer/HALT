@@ -93,7 +93,7 @@ namespace halt {
 		if (state) {
 			glBindBuffer(GL_ARRAY_BUFFER, vb_handle);
 		} else {
-			//glBindBuffer(GL_ARRAY_BUFFER, 0);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
 	}
 
@@ -101,7 +101,7 @@ namespace halt {
 		if (state) {
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib_handle);
 		} else {
-			//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		}
 	}
 

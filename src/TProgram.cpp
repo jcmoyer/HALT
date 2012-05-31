@@ -67,7 +67,7 @@ namespace halt {
 			glUniformMatrix4fv(shader_mat_proj_handle, 1, false, (float*)&proj_matrix);
 			glUniformMatrix4fv(shader_mat_mv_handle, 1, false, (float*)&identity);
 		} else {
-			//glBindTexture(GL_TEXTURE_2D, 0);
+			glBindTexture(GL_TEXTURE_2D, 0);
 			glUseProgram(0);
 		}
 	}
