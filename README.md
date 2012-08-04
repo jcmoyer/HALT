@@ -10,7 +10,29 @@ HALT has a dependency on the OpenGL Extension Wrangler Library. You must
 download it from [here](http://glew.sourceforge.net/) and compile it on your
 own.
 
-#### Visual Studio
+While you can build HALT standalone, it is recommended that you use
+[CMake](http://www.cmake.org/) instead as it is much easier.
+
+#### CMake
+
+The preferred way to built HALT is now using CMake. First, clone the repository:
+
+    >git clone git://github.com/jcmoyer/HALT.git
+
+Then, inside the HALT folder create a new folder called build:
+
+    >cd HALT
+    >mkdir build
+    >cd build
+
+You can then invoke CMake from the command line or by using the CMake GUI. Here
+is how you do it from the command line:
+
+    >cmake ..
+
+CMake will then generate files to compile HALT in the build directory.
+
+#### Visual Studio (Standalone)
 
 Clone the repository into a folder:
 
@@ -37,7 +59,23 @@ Then, clone the repository:
 
     $ git clone git://github.com/jcmoyer/HALT.git
 
-You can now build HALT.
+##### CMake
+
+The preferred way to compile HALT is now using CMake. To do this, go into the
+HALT directory and create a new directory called build:
+
+    $ cd HALT/
+    $ mkdir build && cd build
+
+Then, you can use CMake to generate makefiles for HALT:
+
+    $ cmake ..
+
+Or, if you prefer a GUI that lists all of the compile settings:
+
+    $ ccmake ..
+
+##### Makefile (Deprecated)
 
     $ cd HALT/
     $ make && sudo make install
