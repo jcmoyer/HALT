@@ -51,8 +51,7 @@ ENDIF ()
 
 MESSAGE (STATUS "Attempting to locate dependencies...")
 IF (WIN32)
-  FIND_LIBRARY (OPENGL_LIB
-    NAMES opengl32)
+  FIND_LIBRARY (OPENGL_LIB opengl32)
   FIND_LIBRARY (GLEW_LIB
     NAMES
       glew glew32 libglew libglew32
@@ -91,7 +90,7 @@ ENDIF ()
 IF (OPENGL_LIB)
   MESSAGE (STATUS "OpenGL located at ${OPENGL_LIB}")
 ELSE ()
-  MESSAGE (FATAL_ERROR "Could not locate OpenGL.")
+  MESSAGE (FATAL_ERROR "Could not locate OpenGL. You must manually point to the OpenGL library file through OPENGL_LIB.")
 ENDIF ()
 
 IF (GLEW_LIB)
