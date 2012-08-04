@@ -65,10 +65,15 @@ IF (WIN32)
       ${GLEW_PREFIX}/include)
 ELSE ()
   FIND_LIBRARY (OPENGL_LIB
-    NAMES gl)
+    NAMES GL MesaGL
+    PATHS
+      /usr/lib
+      /usr/lib64
+      /usr/local/lib
+      /usr/local/lib64)
   FIND_LIBRARY (GLEW_LIB
     NAMES
-      glew libglew
+      GLEW
     PATHS
       ${GLEW_PREFIX}/lib
       /usr/lib
