@@ -75,6 +75,10 @@ Or, if you prefer a GUI that lists all of the compile settings:
 
     $ ccmake ..
 
+Then you can build it and install it if you wish:
+
+    $ make && make install
+
 ##### Makefile (Deprecated)
 
     $ cd HALT/
