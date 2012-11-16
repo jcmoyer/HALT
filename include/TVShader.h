@@ -23,25 +23,27 @@
 #ifndef HALT_TVSHADER_H
 #define HALT_TVSHADER_H
 
+// Forward declarations
+namespace halt {
+	class TProgram;
+}
+
 namespace halt {
 	extern const char* TVGLSLShaderSource;
 
 	extern const char* TVS_PROJECTION_MAT;
 	extern const char* TVS_MODEL_VIEW_MAT;
 
-	extern const int   VERTEX_ATTRIBUTE_ID;
 	extern const char* VERTEX_ATTRIBUTE_NAME;
-	extern const int   TEXCOORD_ATTRIBUTE_ID;
 	extern const char* TEXCOORD_ATTRIBUTE_NAME;
-	extern const int   COLOR_ATTRIBUTE_ID;
 	extern const char* COLOR_ATTRIBUTE_NAME;
 
 	class TVShader {
 		unsigned int handle;
 	public:
-		TVShader();
+		TVShader(TProgram* owner);
 		~TVShader();
-		void Enable(bool state);
+		void Enable(bool state, unsigned int vertex_attrib, unsigned int tex_coord_atrrib, unsigned int color_attrib);
 		inline unsigned int GetHandle() const;
 	};
 

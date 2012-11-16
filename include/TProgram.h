@@ -39,6 +39,9 @@ namespace halt {
 		unsigned int shader_tex_handle;
 		unsigned int shader_mat_proj_handle;
 		unsigned int shader_mat_mv_handle;
+		unsigned int vs_tex_coord_attrib;
+		unsigned int vs_vertex_attrib;
+		unsigned int vs_color_attrib;
 	public:
 		TProgram();
 		~TProgram();
@@ -47,6 +50,7 @@ namespace halt {
 		inline void SetOutputSize(int width, int height);
 	private:
 		void GetUniformHandles();
+		void GetAttributeIndices();
 		void BindAttributes();
 	};
 

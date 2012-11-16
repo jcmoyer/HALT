@@ -22,6 +22,7 @@
 
 #include "TVShader.h"
 #include "TerminalRenderer.h"
+#include "TProgram.h"
 #include <GL/glew.h>
 
 namespace halt {
@@ -38,7 +39,7 @@ namespace halt {
 		"varying vec4 tfs_Color;                                                \n"
 		"                                                                       \n"
 		"void main() {                                                          \n"
-		"    gl_Position  = tvs_Projection * tvs_ModelView * gl_Vertex;         \n"
+		"    gl_Position  = tvs_Projection * tvs_ModelView * tvs_Vertex;        \n"
 		"    tfs_TexCoord = tvs_TexCoord;                                       \n"
 		"    tfs_Color    = tvs_Color;                                          \n"
 		"}                                                                      \n";
@@ -46,16 +47,11 @@ namespace halt {
 	const char* TVS_PROJECTION_MAT = "tvs_Projection";
 	const char* TVS_MODEL_VIEW_MAT = "tvs_ModelView";
 
-	const int VERTEX_ATTRIBUTE_ID = 0;
 	const char* VERTEX_ATTRIBUTE_NAME = "tvs_Vertex";
-
-	const int TEXCOORD_ATTRIBUTE_ID = 1;
 	const char* TEXCOORD_ATTRIBUTE_NAME = "tvs_TexCoord";
-
-	const int   COLOR_ATTRIBUTE_ID   = 2;
 	const char* COLOR_ATTRIBUTE_NAME = "tvs_Color";
 
-	TVShader::TVShader() {
+	TVShader::TVShader(TProgram* owner) {
 		handle = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(handle, 1, &TVGLSLShaderSource, 0);
 		glCompileShader(handle);
@@ -65,18 +61,18 @@ namespace halt {
 		if (handle) glDeleteShader(handle);
 	}
 
-	void TVShader::Enable(bool state) {
+	void TVShader::Enable(bool state, unsigned int vertex_attrib, unsigned int tex_coord_atrrib, unsigned int color_attrib) {
 		if (state) {
-			glEnableVertexAttribArray(VERTEX_ATTRIBUTE_ID);
-			glVertexAttribPointer(VERTEX_ATTRIBUTE_ID, 2, GL_UNSIGNED_SHORT, 0, sizeof(TerminalVertex), (void*)0);
-			glEnableVertexAttribArray(TEXCOORD_ATTRIBUTE_ID);
-			glVertexAttribPointer(TEXCOORD_ATTRIBUTE_ID, 2, GL_FLOAT, 0, sizeof(TerminalVertex), (void*)4);
-			glEnableVertexAttribArray(COLOR_ATTRIBUTE_ID);
-			glVertexAttribPointer(COLOR_ATTRIBUTE_ID, 4, GL_UNSIGNED_BYTE, 1, sizeof(TerminalVertex), (void*)12);
+			glEnableVertexAttribArray(vertex_attrib);
+			glVertexAttribPointer(vertex_attrib, 2, GL_UNSIGNED_SHORT, 0, sizeof(TerminalVertex), (void*)0);
+			glEnableVertexAttribArray(tex_coord_atrrib);
+			glVertexAttribPointer(tex_coord_atrrib, 2, GL_FLOAT, 0, sizeof(TerminalVertex), (void*)4);
+			glEnableVertexAttribArray(color_attrib);
+			glVertexAttribPointer(color_attrib, 4, GL_UNSIGNED_BYTE, 1, sizeof(TerminalVertex), (void*)12);
 		} else {
-			glDisableVertexAttribArray(VERTEX_ATTRIBUTE_ID);
-			glDisableVertexAttribArray(TEXCOORD_ATTRIBUTE_ID);
-			glDisableVertexAttribArray(COLOR_ATTRIBUTE_ID);
+			glDisableVertexAttribArray(vertex_attrib);
+			glDisableVertexAttribArray(tex_coord_atrrib);
+			glDisableVertexAttribArray(color_attrib);
 		}
 	}
 }

@@ -28,7 +28,7 @@
 
 namespace halt {
 	TProgram::TProgram() {
-		vs = new TVShader();
+		vs = new TVShader(this);
 		fs = new TFShader();
 		handle = glCreateProgram();
 		glAttachShader(handle, vs->GetHandle());
@@ -38,6 +38,7 @@ namespace halt {
 		this->BindAttributes();
 
 		this->GetUniformHandles();
+		this->GetAttributeIndices();
 	}
 
 	TProgram::~TProgram() {
@@ -47,7 +48,7 @@ namespace halt {
 	}
 
 	void TProgram::Enable(bool state) {
-		vs->Enable(state);
+		vs->Enable(state, vs_vertex_attrib, vs_tex_coord_attrib, vs_color_attrib);
 		if (state) {
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, tex_handle);
@@ -79,9 +80,15 @@ namespace halt {
 		shader_mat_mv_handle   = glGetUniformLocation(handle, TVS_MODEL_VIEW_MAT);
 	}
 
+	void TProgram::GetAttributeIndices() {
+		vs_vertex_attrib = glGetAttribLocation(handle, VERTEX_ATTRIBUTE_NAME);
+		vs_tex_coord_attrib = glGetAttribLocation(handle, TEXCOORD_ATTRIBUTE_NAME);
+		vs_color_attrib = glGetAttribLocation(handle, COLOR_ATTRIBUTE_NAME);
+	}
+
 	void TProgram::BindAttributes() {
-		glBindAttribLocation(handle, VERTEX_ATTRIBUTE_ID, VERTEX_ATTRIBUTE_NAME);
-		glBindAttribLocation(handle, TEXCOORD_ATTRIBUTE_ID, TEXCOORD_ATTRIBUTE_NAME);
-		glBindAttribLocation(handle, COLOR_ATTRIBUTE_ID, COLOR_ATTRIBUTE_NAME);
+		glBindAttribLocation(handle, vs_vertex_attrib, VERTEX_ATTRIBUTE_NAME);
+		glBindAttribLocation(handle, vs_tex_coord_attrib, TEXCOORD_ATTRIBUTE_NAME);
+		glBindAttribLocation(handle, vs_color_attrib, COLOR_ATTRIBUTE_NAME);
 	}
 }
