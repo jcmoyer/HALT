@@ -53,7 +53,7 @@ linking `SDL.lib` and `Halt.lib` (default).
 First, download the required dependencies. These are required to build HALT in
 one way or another:
 
-    $ sudo apt-get install build-essential libglew-dev libgl1-mesa-dev git
+    $ sudo apt-get install build-essential libglew-dev libgl1-mesa-dev
 
 Then, clone the repository:
 
