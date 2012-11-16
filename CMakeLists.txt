@@ -25,6 +25,8 @@ PROJECT (HALT)
 
 SET (HALT_VERSION "0.1.0")
 
+SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${HALT_SOURCE_DIR}/cmake")
+
 MESSAGE (STATUS "Detecting platform...")
 IF (WIN32)
   SET (PLATFORM win32)
@@ -47,60 +49,8 @@ IF (NOT DEFINED GLEW_PREFIX)
 ENDIF ()
 
 MESSAGE (STATUS "Attempting to locate dependencies...")
-IF (WIN32)
-  FIND_LIBRARY (OPENGL_LIB opengl32)
-  FIND_LIBRARY (GLEW_LIB
-    NAMES
-      glew glew32 libglew libglew32
-    PATHS
-      ${GLEW_PREFIX}/lib)
-  FIND_PATH(GLEW_INCLUDE
-    NAMES
-      GL/glew.h
-    PATHS
-      ${GLEW_PREFIX}/include)
-ELSE ()
-  FIND_LIBRARY (OPENGL_LIB
-    NAMES GL MesaGL
-    PATHS
-      /usr/lib
-      /usr/lib64
-      /usr/local/lib
-      /usr/local/lib64)
-  FIND_LIBRARY (GLEW_LIB
-    NAMES
-      GLEW
-    PATHS
-      ${GLEW_PREFIX}/lib
-      /usr/lib
-      /usr/lib64
-      /usr/local/lib
-      /usr/local/lib64)
-  FIND_PATH(GLEW_INCLUDE
-    NAMES
-      GL/glew.h
-    PATHS
-      /usr/include
-      /usr/local/include)
-ENDIF ()
-
-IF (OPENGL_LIB)
-  MESSAGE (STATUS "OpenGL located at ${OPENGL_LIB}")
-ELSE ()
-  MESSAGE (FATAL_ERROR "Could not locate OpenGL. You must manually point to the OpenGL library file through OPENGL_LIB.")
-ENDIF ()
-
-IF (GLEW_LIB)
-  MESSAGE (STATUS "GLEW located at ${GLEW_LIB}")
-ELSE ()
-  MESSAGE (FATAL_ERROR "Could not locate the GLEW library file. Either GLEW_PREFIX needs to point to a directory containing include and lib directories for GLEW, or you must specify the directory manually through GLEW_LIB.")
-ENDIF ()
-
-IF (GLEW_INCLUDE)
-  MESSAGE (STATUS "GLEW includes located at ${GLEW_INCLUDE}")
-ELSE ()
-  MESSAGE (FATAL_ERROR "Could not locate the GLEW header files. Either GLEW_PREFIX needs to point to a directory containing include and lib directories for GLEW, or you must specify the directory manually through GLEW_INCLUDE.")
-ENDIF ()
+INCLUDE (FindOpenGL)
+INCLUDE (FindGLEW)
 
 # Where to look for stuff
 INCLUDE_DIRECTORIES (${GLEW_INCLUDE})
