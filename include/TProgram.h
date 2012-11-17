@@ -38,7 +38,6 @@ namespace halt {
 		unsigned int tex_handle;
 		unsigned int shader_tex_handle;
 		unsigned int shader_mat_proj_handle;
-		unsigned int shader_mat_mv_handle;
 		unsigned int vs_tex_coord_attrib;
 		unsigned int vs_vertex_attrib;
 		unsigned int vs_color_attrib;

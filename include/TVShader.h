@@ -32,7 +32,6 @@ namespace halt {
 	extern const char* TVGLSLShaderSource;
 
 	extern const char* TVS_PROJECTION_MAT;
-	extern const char* TVS_MODEL_VIEW_MAT;
 
 	extern const char* VERTEX_ATTRIBUTE_NAME;
 	extern const char* TEXCOORD_ATTRIBUTE_NAME;

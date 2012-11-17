@@ -29,7 +29,6 @@ namespace halt {
 	const char* TVGLSLShaderSource =
 		"#version 120                                                           \n"
 		"uniform mat4 tvs_Projection;                                           \n"
-		"uniform mat4 tvs_ModelView;                                            \n"
 		"                                                                       \n"
 		"attribute vec2 tvs_TexCoord;                                           \n"
 		"attribute vec4 tvs_Vertex;                                             \n"
@@ -39,13 +38,12 @@ namespace halt {
 		"varying vec4 tfs_Color;                                                \n"
 		"                                                                       \n"
 		"void main() {                                                          \n"
-		"    gl_Position  = tvs_Projection * tvs_ModelView * tvs_Vertex;        \n"
+		"    gl_Position  = tvs_Projection * tvs_Vertex;                        \n"
 		"    tfs_TexCoord = tvs_TexCoord;                                       \n"
 		"    tfs_Color    = tvs_Color;                                          \n"
 		"}                                                                      \n";
 
 	const char* TVS_PROJECTION_MAT = "tvs_Projection";
-	const char* TVS_MODEL_VIEW_MAT = "tvs_ModelView";
 
 	const char* VERTEX_ATTRIBUTE_NAME = "tvs_Vertex";
 	const char* TEXCOORD_ATTRIBUTE_NAME = "tvs_TexCoord";
