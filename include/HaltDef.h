@@ -26,7 +26,11 @@
 #define HALT_HALTDEF_H
 
 // Figure out whether or not we should use declspec.
-#if (defined(LINUX)) || (defined(linux)) || (defined(__linux))
+// WARNING: Be wary of declspec. This definitely needs to be revisited ASAP.
+// This caused some weird bugs when building HALT as a static library under
+// mingw. Activating __declspec for Visual Studio only is a high priority for
+// the near future.
+#if (defined(LINUX)) || (defined(linux)) || (defined(__linux)) || (defined(__GNUC__))
 // TODO: Figure out if this is how you export symbols in gcc.
 #	define HALT_API __attribute__((__visibility__("default")))
 #else
