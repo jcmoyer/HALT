@@ -41,8 +41,8 @@ ENDIF ()
 #
 # Options that control how HALT will be built
 #
-OPTION (HALT_OMIT_SHARED "Build HALT as a shared or dynamic library." OFF)
-OPTION (HALT_OMIT_STATIC "Build HALT as a shared or dynamic library." OFF)
+OPTION (HALT_OMIT_SHARED "Does not build a shared library if enabled." OFF)
+OPTION (HALT_OMIT_STATIC "Does not build a static library if enabled." OFF)
 
 IF (NOT DEFINED GLEW_PREFIX)
   SET (GLEW_PREFIX "" CACHE PATH "Location of the GLEW include and lib folders.")
