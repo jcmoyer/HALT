@@ -44,6 +44,10 @@ ENDIF ()
 OPTION (HALT_OMIT_SHARED "If enabled, does not output a shared library." OFF)
 OPTION (HALT_OMIT_STATIC "If enabled, does not output a static library." OFF)
 
+IF (HALT_OMIT_SHARED AND HALT_OMIT_STATIC)
+  MESSAGE (FATAL_ERROR "You cannot omit both types of libraries.")
+ENDIF ()
+
 IF (NOT DEFINED GLEW_PREFIX)
   SET (GLEW_PREFIX "" CACHE PATH "Location of the GLEW include and lib folders.")
 ENDIF ()
