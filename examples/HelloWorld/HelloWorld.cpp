@@ -27,8 +27,8 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_opengl.h>
 #include <cmath>
-#include <HALT/Halt.h>
-#include <HALT/TerminalShader.h>
+#include <Halt.h>
+#include <TerminalShader.h>
 #include <ctime>
 #include <vector>
 #include <string>

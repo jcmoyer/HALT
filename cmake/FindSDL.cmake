@@ -20,59 +20,59 @@
 # IN THE SOFTWARE.
 # ============================================================================
 
-MESSAGE (STATUS "Attempting to locate GLEW...")
+MESSAGE (STATUS "Attempting to locate SDL...")
 IF (WIN32)
-  FIND_LIBRARY (GLEW_LIB
+  FIND_LIBRARY (SDL_LIB
     NAMES
-      glew glew32 libglew libglew32
+      SDL
     PATHS
-      ${GLEW_PREFIX}/lib)
-  FIND_PATH(GLEW_INCLUDE
+      ${SDL_PREFIX}/lib)
+  FIND_PATH (SDL_INCLUDE
     NAMES
-      GL/glew.h
+      SDL/SDL.h
     PATHS
-      ${GLEW_PREFIX}/include)
-  IF (GLEW_LIB)
-    FIND_FILE (GLEW_DLL
+      ${SDL_PREFIX}/include)
+  IF (SDL_LIB)
+    FIND_FILE (SDL_DLL
       NAMES
-        glew.dll glew32.dll libglew.dll libglew32.dll
+        SDL.dll
       PATHS
-        ${GLEW_PREFIX}/bin
-        ${GLEW_PREFIX}/lib
+        ${SDL_PREFIX}/bin
+        ${SDL_PREFIX}/lib
     )
   ENDIF ()
 ELSE ()
-  FIND_LIBRARY (GLEW_LIB
+  FIND_LIBRARY (SDL_LIB
     NAMES
-      GLEW
+      SDL
     PATHS
-      ${GLEW_PREFIX}/lib
+      ${SDL_PREFIX}/lib
       /usr/lib
       /usr/lib64
       /usr/local/lib
       /usr/local/lib64)
-  FIND_PATH(GLEW_INCLUDE
+  FIND_PATH (SDL_INCLUDE
     NAMES
-      GL/glew.h
+      SDL/SDL.h
     PATHS
       /usr/include
       /usr/local/include)
 ENDIF ()
 
-IF (GLEW_LIB)
-  MESSAGE (STATUS "GLEW located at ${GLEW_LIB}")
+IF (SDL_LIB)
+  MESSAGE (STATUS "SDL located at ${SDL_LIB}")
 ELSE ()
-  MESSAGE (FATAL_ERROR "Could not locate the GLEW library file. Either GLEW_PREFIX needs to point to a directory containing include and lib directories for GLEW, or you must specify the directory manually through GLEW_LIB.")
+  MESSAGE (FATAL_ERROR "Could not locate the SDL library file. Either SDL_PREFIX needs to point to a directory containing include and lib directories for SDL, or you must specify the directory manually through SDL_LIB.")
 ENDIF ()
 
-IF (GLEW_INCLUDE)
-  MESSAGE (STATUS "GLEW includes located at ${GLEW_INCLUDE}")
+IF (SDL_INCLUDE)
+  MESSAGE (STATUS "SDL includes located at ${SDL_INCLUDE}")
 ELSE ()
-  MESSAGE (FATAL_ERROR "Could not locate the GLEW header files. Either GLEW_PREFIX needs to point to a directory containing include and lib directories for GLEW, or you must specify the directory manually through GLEW_INCLUDE.")
+  MESSAGE (FATAL_ERROR "Could not locate the SDL header files. Either SDL_PREFIX needs to point to a directory containing include and lib directories for SDL, or you must specify the directory manually through SDL_INCLUDE.")
 ENDIF ()
 
 IF (WIN32)
-  IF (GLEW_DLL)
-    MESSAGE (STATUS "GLEW DLL found at ${GLEW_DLL}")
+  IF (SDL_DLL)
+    MESSAGE (STATUS "SDL DLL found at ${SDL_DLL}")
   ENDIF ()
 ENDIF ()
