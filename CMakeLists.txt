@@ -41,8 +41,8 @@ ENDIF ()
 #
 # Options that control how HALT will be built
 #
-OPTION (HALT_OMIT_SHARED "If enabled, does not output a shared library." OFF)
-OPTION (HALT_OMIT_STATIC "If enabled, does not output a static library." OFF)
+OPTION (HALT_OMIT_SHARED "Does not build a shared library if enabled." OFF)
+OPTION (HALT_OMIT_STATIC "Does not build a static library if enabled." OFF)
 
 IF (HALT_OMIT_SHARED AND HALT_OMIT_STATIC)
   MESSAGE (FATAL_ERROR "You cannot omit both types of libraries.")
