@@ -7,8 +7,7 @@ Hardware accelerated terminal implementation written in C++ and OpenGL.
 ### Windows
 
 HALT has a dependency on the OpenGL Extension Wrangler Library. You must
-download it from [here](http://glew.sourceforge.net/) and compile it on your
-own.
+download it from [here](http://glew.sourceforge.net/).
 
 While you can build HALT standalone, it is recommended that you use
 [CMake](http://www.cmake.org/) instead as it is much easier.
