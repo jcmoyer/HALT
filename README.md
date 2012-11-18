@@ -15,7 +15,7 @@ While you can build HALT standalone, it is recommended that you use
 
 #### CMake
 
-The preferred way to built HALT is now using CMake. First, clone the repository:
+First, clone the repository:
 
     >git clone git://github.com/jcmoyer/HALT.git
 
@@ -61,8 +61,7 @@ Then, clone the repository:
 
 ##### CMake
 
-The preferred way to compile HALT is now using CMake. To do this, go into the
-HALT directory and create a new directory called build:
+Go into the HALT directory and create a new directory called build:
 
     $ cd HALT/
     $ mkdir build && cd build
@@ -78,16 +77,6 @@ Or, if you prefer a GUI that lists all of the compile settings:
 Then you can build it and install it if you wish:
 
     $ make && make install
-
-##### Makefile (Deprecated)
-
-    $ cd HALT/
-    $ make && sudo make install
-
-To build the examples (optional):
-
-    $ sudo apt-get install libsdl-dev
-    $ cd examples/ && make
 
 ## Usage
 
