@@ -22,7 +22,12 @@
 
 MESSAGE (STATUS "Attempting to locate OpenGL...")
 IF (WIN32)
-  FIND_LIBRARY (OPENGL_LIB opengl32)
+  IF (CYGWIN)
+    FIND_LIBRARY (OPENGL_LIB opengl32)
+  ELSE ()
+    # Theoretically this should always be opengl32...
+    SET (OPENGL_LIB opengl32)
+  ENDIF ()
 ELSE ()
   FIND_LIBRARY (OPENGL_LIB
     NAMES GL MesaGL
