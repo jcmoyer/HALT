@@ -124,7 +124,7 @@ int main(int argc, char** argv) {
 
 	// Initialize Halt.
 	int haltStatus = halt::Initialize();
-	if (haltStatus != 0) {
+	if (haltStatus != halt::HALT_OK) {
 		std::cerr << "Error initializing HALT: " << halt::GetErrorString(haltStatus) << std::endl;
 		return EXIT_FAILURE;
 	}

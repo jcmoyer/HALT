@@ -28,6 +28,8 @@
 #include "Character.h"
 
 namespace halt {
+	const int HALT_OK = 0;
+
 	/// Initializes HALT. This should be called after an OpenGL context has
 	/// been created and is available on the current thread.
 	/// @return HALT_OK on success; otherwise returns a code that you can pass
