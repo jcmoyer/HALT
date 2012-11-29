@@ -24,7 +24,11 @@
 #include <GL/glew.h>
 
 namespace halt {
-	void Initialize() {
-		glewInit();
+	int Initialize() {
+		return glewInit();
+	}
+
+	const char* GetErrorString(int error) {
+		return (const char*)glewGetErrorString(error);
 	}
 }

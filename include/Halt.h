@@ -28,7 +28,17 @@
 #include "Character.h"
 
 namespace halt {
-	HALT_API void Initialize();
+	/// Initializes HALT. This should be called after an OpenGL context has
+	/// been created and is available on the current thread.
+	/// @return HALT_OK on success; otherwise returns a code that you can pass
+	///         to halt::GetErrorString(int) for a description of what went
+	///         wrong.
+	/// @see GetErrorString
+	HALT_API int Initialize();
+
+	/// Looks up the error string associated with an error code.
+	/// @return The error string associated with the given error code.
+	HALT_API const char* GetErrorString(int error);
 }
 
 #endif
