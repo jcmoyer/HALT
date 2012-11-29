@@ -33,6 +33,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <iostream>
 #include "utilities/Imaging.h"
 #include "utilities/Platform.h"
 
@@ -114,6 +115,7 @@ int main(int argc, char** argv) {
 #endif
 	// Initialize SDL.
 	if (!halt::InitSDL()) {
+		std::cerr << "Unable to initialize SDL." << std::endl;
 		return EXIT_FAILURE;
 	}
 
@@ -121,7 +123,11 @@ int main(int argc, char** argv) {
 	halt::InitStaticStates();
 
 	// Initialize Halt.
-	halt::Initialize();
+	int haltStatus = halt::Initialize();
+	if (haltStatus != 0) {
+		std::cerr << "Error initializing HALT: " << halt::GetErrorString(haltStatus) << std::endl;
+		return EXIT_FAILURE;
+	}
 
 	// Size of cells in the terminal, in pixels.
 	halt::CharacterSize size;
@@ -131,14 +137,9 @@ int main(int argc, char** argv) {
 	// Create the actual terminal. It is 80 cells wide, 25 cells
 	// high, and 2 cells deep.
 	halt::Terminal* term = new halt::Terminal(80, 25, 2, size);
-	int err;
-	if ((err = glGetError()) != 0) {
-		fprintf(stderr, "ERROR hw %d (0x%08X)", err, err);
-	}
+
 	// Load the actual terminal character map.
 	GLuint texture = halt::LoadTexture("./res/default.png");
-
-
 
 	// Tell HALT to use the loaded texture.
 	term->SetTexture(texture);
