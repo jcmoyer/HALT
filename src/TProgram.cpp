@@ -35,7 +35,7 @@ namespace halt {
 		glAttachShader(handle, fs->GetHandle());
 
 		glLinkProgram(handle);
-		this->BindAttributes();
+		glUseProgram(handle);
 
 		this->GetUniformHandles();
 		this->GetAttributeIndices();
@@ -67,7 +67,6 @@ namespace halt {
 	}
 
 	void TProgram::GetUniformHandles() {
-		glUseProgram(handle);
 		shader_mat_proj_handle = glGetUniformLocation(handle, TVS_PROJECTION_MAT);
 		shader_tex_handle      = glGetUniformLocation(handle, SAMPLER_NAME);
 	}
@@ -76,11 +75,5 @@ namespace halt {
 		vs_vertex_attrib = glGetAttribLocation(handle, VERTEX_ATTRIBUTE_NAME);
 		vs_tex_coord_attrib = glGetAttribLocation(handle, TEXCOORD_ATTRIBUTE_NAME);
 		vs_color_attrib = glGetAttribLocation(handle, COLOR_ATTRIBUTE_NAME);
-	}
-
-	void TProgram::BindAttributes() {
-		glBindAttribLocation(handle, vs_vertex_attrib, VERTEX_ATTRIBUTE_NAME);
-		glBindAttribLocation(handle, vs_tex_coord_attrib, TEXCOORD_ATTRIBUTE_NAME);
-		glBindAttribLocation(handle, vs_color_attrib, COLOR_ATTRIBUTE_NAME);
 	}
 }

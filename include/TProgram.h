@@ -50,7 +50,6 @@ namespace halt {
 	private:
 		void GetUniformHandles();
 		void GetAttributeIndices();
-		void BindAttributes();
 	};
 
 	// Inline functions
