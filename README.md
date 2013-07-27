@@ -79,7 +79,9 @@ Then you can build it and install it if you wish:
 
 ## Usage
 
-TODO. For now, see examples.
+You can view the documentation [here](http://jcmoyer.github.io/HALT/). You can
+also find working examples in the examples directory. The examples depend on SDL
+1.2 and HALT.
 
 ## License (MIT)
 
