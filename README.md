@@ -6,7 +6,7 @@ Hardware accelerated terminal implementation written in C++ and OpenGL.
 
 ### Windows
 
-HALT has a dependency on the OpenGL Extension Wrangler Library. You must
+HALT has a dependency on the OpenGL Extension Wrangler Library (GLEW). You must
 download it from [here](http://glew.sourceforge.net/).
 
 While you can build HALT standalone, it is recommended that you use
@@ -85,7 +85,7 @@ also find working examples in the examples directory. The examples depend on SDL
 
 ## License (MIT)
 
-Copyright (c) 2011-2012 J.C. Moyer
+Copyright (©) 2011-2012 J.C. Moyer
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
